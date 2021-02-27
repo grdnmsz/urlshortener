@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 import dbConnect from "../../controllers/mongodb";
-import UrlModel from "../../models/url";
+import UrlModel, { IUrl } from "../../models/url";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const method = req.method;
+  const { method } = req;
   await dbConnect();
 
   switch (method) {
@@ -18,9 +18,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       );
 
       if (urlInDB) {
-        return res.status(200).json(urlInDB); // lreturn it if we found it
+        return res.status(200).json(urlInDB); // return it if we found it
       } else {
-        const newUrlShort = new UrlModel({
+        const newUrlShort: IUrl = new UrlModel({
           longUrl: urlToShort,
           shortUrl: "google.com",
         });
