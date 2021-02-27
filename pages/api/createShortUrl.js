@@ -1,11 +1,13 @@
 import dbConnect from "../../controllers/mongodb";
 
-export default async function handler(req, res) {
-  const method = { req }
+const handler = async (req, res) => {
+  const method = { req };
   await dbConnect();
 
-  switch(method) {
+  switch (method) {
     default:
       res.status(200).json("coucou");
   }
-}
+};
+
+export default handler;
