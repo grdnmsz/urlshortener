@@ -5,7 +5,7 @@ export interface IUrl extends Document {
   shortUrl: string;
 }
 
-delete connection.models["UrlModel"];
+delete connection.models["UrlModel"]; // prevent from multiple model definitions
 
 const UrlSchema = new Schema({
   longUrl: { type: String },

@@ -15,8 +15,7 @@ export const sendUrl = async (url: string) => {
         },
       }
     );
-    console.log(resp);
-    return resp;
+    return resp.data;
   } catch (error) {
     return Promise.reject(error);
   }

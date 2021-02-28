@@ -5,8 +5,9 @@ const urlForm = ({ onSend }) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    onSend(urlToShort);
     event.target.reset();
+
+    onSend(urlToShort);
     setUrlToShort("");
   };
 

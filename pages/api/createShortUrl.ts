@@ -11,12 +11,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     case "POST": {
       const { urlToShort } = req.body;
       // checking input url in DB
-      const urlInDB = await UrlModel.findOne({ longUrl: `${urlToShort}` }).catch(
-        (error) => {
-          console.log(error);
-          return res.status(500).send(error.message);
-        }
-      );
+      const urlInDB = await UrlModel.findOne({
+        longUrl: `${urlToShort}`,
+      }).catch((error) => {
+        return res.status(500).send(error.message);
+      });
 
       if (urlInDB) {
         return res.status(200).send(urlInDB); // return it if we found it
@@ -31,11 +30,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           newUrlShort.save();
           return res.status(200).send(newUrlShort.shortUrl);
         } catch (error) {
-          res.status(500).send(error.message);
+          return res.status(500).send(error.message);
         }
       }
-      break;
     }
+    default:
+      return res.status(403).send("Can't access");
   }
 };
 

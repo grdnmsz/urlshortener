@@ -10,6 +10,7 @@ module.exports = {
       gray: colors.gray,
       teal: colors.teal,
       purple: colors.purple,
+      red: colors.red,
       orange: colors.orange,
       cyan: colors.cyan,
       headerColor: "#1e3b3b",
