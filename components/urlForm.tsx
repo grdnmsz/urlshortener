@@ -1,9 +1,14 @@
 import { useState } from "react";
 
-const urlForm = () => {
+const urlForm = ({ onSend }) => {
   const [urlToShort, setUrlToShort] = useState<String>("");
 
-  const onSubmit = (event) => {};
+  const onSubmit = (event) => {
+    event.preventDefault();
+    onSend(urlToShort);
+    event.target.reset();
+    setUrlToShort("");
+  };
 
   return (
     <>

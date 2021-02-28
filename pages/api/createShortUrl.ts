@@ -8,21 +8,22 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await dbConnect();
 
   switch (method) {
-    case "POST":
+    case "POST": {
       const { urlToShort } = req.body;
       // checking input url in DB
-      const urlInDB = await UrlModel.findOne({ longUrl: urlToShort }).catch(
+      const urlInDB = await UrlModel.findOne({ longUrl: `${urlToShort}` }).catch(
         (error) => {
           console.log(error);
+          return res.status(500).send(error.message);
         }
       );
 
       if (urlInDB) {
-        return res.status(200).json(urlInDB); // return it if we found it
+        return res.status(200).send(urlInDB); // return it if we found it
       } else {
         const newUrlShort: IUrl = new UrlModel({
           longUrl: urlToShort,
-          shortUrl: "google.com",
+          shortUrl: urlToShort,
         });
 
         try {
@@ -30,9 +31,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           newUrlShort.save();
           return res.status(200).send(newUrlShort.shortUrl);
         } catch (error) {
-          res.status(400).send(error.message);
+          res.status(500).send(error.message);
         }
       }
+      break;
+    }
   }
 };
 

@@ -1,10 +1,13 @@
-import { url } from "inspector";
-import { useState } from "react";
-
 import Layout from "../components/layout";
 import UrlForm from "../components/urlForm";
 
+import { sendUrl, getUrl } from "../controllers/urlGetSend";
+
 export default function Home() {
+  const onSend = (url: string) => {
+    return sendUrl(url);
+  };
+
   return (
     <Layout>
       <div className="relative bg-white overflow-hidden">
@@ -15,7 +18,7 @@ export default function Home() {
                 <h1 className="text-4xl tracking-tight font-extrabold text-gray-200 sm:text-5xl md:text-6xl">
                   <span className="block xl:inline">url-shortener</span>
                 </h1>
-                <UrlForm />
+                <UrlForm onSend={onSend} />
               </div>
             </main>
           </div>

@@ -10,6 +10,7 @@
   "dependencies": {
     "@types/mongoose": "^5.10.3",
     "autoprefixer": "^10.0.4",
+    "axios": "^0.21.1",
     "mongoose": "^5.11.18",
     "next": "latest",
     "postcss": "^8.1.10",
