@@ -1,5 +1,3 @@
-import {useState, useEffect } from "react";
-
 const LastAddedUrl = ({ shortUrl }) => {
   // todo : copy button logic
   return (

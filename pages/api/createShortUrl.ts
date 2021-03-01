@@ -10,7 +10,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     case "POST": {
       await dbConnect();
       const { url } = req.body;
-      console.log(url);
       // looking for the same url that might be in db already
       await UrlModel.findOne({ url: `${url}` })
         .then((resp) => {

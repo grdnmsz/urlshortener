@@ -9,10 +9,11 @@ import { sendUrl } from "../controllers/urlSendUrl";
 export default function Home() {
   const [shortUrlProp, setShortUrlProp] = useState("");
 
-  const onSend = (url: string) => {
+  const onSend = (url: string, event) => {
     sendUrl(url)
       .then((resp: string) => {
         setShortUrlProp(resp);
+        event.target.reset(); // clean the form
       })
       .catch((error) => {
         /*

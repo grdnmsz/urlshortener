@@ -4,12 +4,8 @@ const urlForm = ({ onSend }) => {
   const [urlToShort, setUrlToShort] = useState<String>("");
 
   const onSubmit = (event) => {
-    // prevent from reload
-    event.preventDefault();
-    // clean the form
-    event.target.reset();
-
-    onSend(urlToShort);
+    event.preventDefault(); // prevent from reload
+    onSend(urlToShort, event);
     setUrlToShort("");
   };
 
