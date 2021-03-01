@@ -5,7 +5,7 @@ export const sendUrl = async (url: string) => {
     const resp = await axios.post(
       `/api/createShortUrl`,
       {
-        urlToShort: url,
+        url: url,
       },
       {
         headers: {

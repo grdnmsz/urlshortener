@@ -1,11 +1,24 @@
-import Layout from "../components/layout";
-import UrlForm from "../components/urlForm";
+import { useState } from "react";
+
+import Layout from "../components/Layout.component";
+import UrlForm from "../components/UrlForm.component";
+import LastAddedUrl from "../components/LastAddedUrl.component";
 
 import { sendUrl } from "../controllers/urlSendUrl";
 
 export default function Home() {
+  const [shortUrlProp, setShortUrlProp] = useState("");
+
   const onSend = (url: string) => {
-    return sendUrl(url);
+    sendUrl(url)
+      .then((resp: string) => {
+        setShortUrlProp(resp);
+      })
+      .catch((error) => {
+        /*
+          todo
+         */
+      });
   };
 
   return (
@@ -14,6 +27,7 @@ export default function Home() {
         <span className="block xl:inline">url-shortener</span>
       </h1>
       <UrlForm onSend={onSend} />
+      <LastAddedUrl shortUrl={shortUrlProp} />
     </Layout>
   );
 }
