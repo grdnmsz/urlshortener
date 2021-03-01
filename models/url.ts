@@ -1,14 +1,14 @@
 import { Document, Schema, model, connection } from "mongoose";
 
 export interface IUrl extends Document {
-  longUrl: string;
+  url: string;
   shortUrl: string;
 }
 
 delete connection.models["UrlModel"]; // prevent from multiple model definitions
 
 const UrlSchema = new Schema({
-  longUrl: { type: String },
+  url: { type: String },
   shortUrl: { type: String },
 });
 

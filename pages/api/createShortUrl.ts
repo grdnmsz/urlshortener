@@ -3,25 +3,25 @@ import { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../controllers/mongodb";
 import UrlModel, { IUrl } from "../../models/url";
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { method } = req;
-  await dbConnect();
 
   switch (method) {
     case "POST": {
+      await dbConnect();
       const { urlToShort } = req.body;
       // checking input url in DB
       const urlInDB = await UrlModel.findOne({
-        longUrl: `${urlToShort}`,
+        url: `${urlToShort}`,
       }).catch((error) => {
         return res.status(500).send(error.message);
       });
 
       if (urlInDB) {
-        return res.status(200).send(urlInDB); // return it if we found it
+        return res.status(200).send(urlInDB.shortUrl); // return it if we found it
       } else {
         const newUrlShort: IUrl = new UrlModel({
-          longUrl: urlToShort,
+          url: urlToShort,
           shortUrl: urlToShort,
         });
 
@@ -38,5 +38,3 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(403).send("Can't access");
   }
 };
-
-export default handler;
