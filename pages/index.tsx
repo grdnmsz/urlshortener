@@ -7,12 +7,12 @@ import LastAddedUrl from "../components/LastAddedUrl.component";
 import { sendUrl } from "../controllers/urlSendUrl";
 
 export default function Home() {
-  const [shortUrlProp, setShortUrlProp] = useState("");
+  const [shortUrlProp, setShortUrlProp] = useState<string>("");
 
   const onSend = (url: string, event) => {
     sendUrl(url)
-      .then((resp: string) => {
-        setShortUrlProp(resp);
+      .then((resp) => {
+        setShortUrlProp(resp.data.shortUrl);
         event.target.reset(); // clean the form
       })
       .catch((error) => {

@@ -20,7 +20,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         });
 
       if (urlsInDB) {
-        return res.status(200).send(urlsInDB.shortUrl); // return it if we found it
+        return res.status(200).send({ data: urlsInDB }); // return it if we found it
       } else {
         const newUrlShort: IUrl = new UrlModel({
           url: url,
@@ -30,7 +30,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         try {
           // saving in DB and return the short url created
           newUrlShort.save();
-          return res.status(200).send(newUrlShort.shortUrl);
+          return res.status(200).send({ data: newUrlShort });
         } catch (error) {
           return res.status(500).send(error.message);
         }

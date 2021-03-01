@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const urlForm = ({ onSend }) => {
-  const [urlToShort, setUrlToShort] = useState<String>("");
+  const [urlToShort, setUrlToShort] = useState<string>("");
 
   const onSubmit = (event) => {
     event.preventDefault(); // prevent from reload
