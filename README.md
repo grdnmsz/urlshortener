@@ -1,5 +1,5 @@
 # urlshortener
-Using
+Simple Toy project using
 - Next.js & Tailwindcss project starter
 - Typescript
 - Mongodb

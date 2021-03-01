@@ -2,6 +2,7 @@ import dbConnect from "../controllers/mongodb";
 import UrlModel from "../models/url";
 
 const _ = () => {
+  // redirect component
   return null;
 };
 
@@ -27,7 +28,7 @@ export const getServerSideProps = async (context) => {
     );
     return {
       redirect: {
-        destination: `err/404`,
+        destination: `/p/404`, // todo ?
         permanent: false,
       },
     };

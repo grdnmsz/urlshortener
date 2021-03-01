@@ -11,7 +11,17 @@ const layout = ({ children }: Props) => {
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
-        <main>{children}</main>
+        <div className="relative bg-white overflow-hidden">
+          <div className="max-w-7xl mx-auto">
+            <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-26">
+              <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-10 sm:px-6 lg:px-8">
+                <div className="sm:text-center lg:text-left">
+                  <main>{children}</main>
+                </div>
+              </main>
+            </div>
+          </div>
+        </div>
       </div>
       <footer className="bg-backgroundColor text-gray-300 px-6 lg:px-8 py-12">
         <div className="max-w-screen-xl mx-auto flex flex-col items-center ">
