@@ -1,4 +1,4 @@
-import dbConnect from "../controllers/mongodb";
+import { dbConnect } from "../controllers/";
 import UrlModel from "../models/url";
 
 const _ = () => {

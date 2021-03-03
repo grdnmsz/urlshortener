@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const urlForm = ({ onSend }) => {
+const UrlForm = ({ onSend }) => {
   const [urlToShort, setUrlToShort] = useState<string>("");
 
   const onSubmit = (event) => {
@@ -35,4 +35,4 @@ const urlForm = ({ onSend }) => {
   );
 };
 
-export default urlForm;
+export default UrlForm;

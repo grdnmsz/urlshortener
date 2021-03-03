@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { useState } from "react";
-import dbConnect from "../../controllers/mongodb";
+import { dbConnect } from "../../controllers/";
 import UrlModel, { IUrl } from "../../models/url";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { method } = req;
   let urlsInDB = <IUrl>{};
+
   switch (method) {
     case "POST": {
       await dbConnect();
@@ -20,17 +20,18 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         });
 
       if (urlsInDB) {
-        return res.status(200).send({ data: urlsInDB }); // return it if we found it
+        // return it if we found it
+        return res.status(200).send({ data: urlsInDB });
       } else {
-        const newUrlShort: IUrl = new UrlModel({
+        const newUrlsInDB: IUrl = new UrlModel({
           url: url,
           shortUrl: url,
         });
 
         try {
           // saving in DB and return the short url created
-          newUrlShort.save();
-          return res.status(200).send({ data: newUrlShort });
+          newUrlsInDB.save();
+          return res.status(200).send({ data: newUrlsInDB });
         } catch (error) {
           return res.status(500).send(error.message);
         }

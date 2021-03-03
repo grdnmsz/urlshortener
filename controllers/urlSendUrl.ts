@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const sendUrl = async (url: string) => {
+const sendUrl = async (url: string) => {
   try {
     const resp = await axios.post(
       `/api/createShortUrl`,
@@ -18,3 +18,5 @@ export const sendUrl = async (url: string) => {
     return Promise.reject(error);
   }
 };
+
+export default sendUrl;

@@ -1,16 +1,15 @@
 import { useState } from "react";
 
 import Layout from "../components/Layout.component";
-import UrlForm from "../components/UrlForm.component";
-import LastAddedUrl from "../components/LastAddedUrl.component";
+import { UrlForm, LastAddedUrl } from "../components/";
 
-import { sendUrl } from "../controllers/urlSendUrl";
+import { urlSendUrl } from "../controllers/";
 
 export default function Home() {
   const [shortUrlProp, setShortUrlProp] = useState<string>("");
 
   const onSend = (url: string, event) => {
-    sendUrl(url)
+    urlSendUrl(url)
       .then((resp) => {
         setShortUrlProp(resp.data.shortUrl);
         event.target.reset(); // clean the form
