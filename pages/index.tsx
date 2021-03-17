@@ -3,7 +3,7 @@ import { useState } from "react";
 import Layout from "../components/Layout.component";
 import { UrlForm, LastAddedUrl } from "../components/";
 
-import { urlSendUrl } from "../controllers/";
+import { urlSendUrl, generateKey } from "../controllers/";
 
 export default function Home() {
   const [shortUrlProp, setShortUrlProp] = useState<string>("");

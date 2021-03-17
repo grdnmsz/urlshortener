@@ -11,12 +11,14 @@
     "@types/mongoose": "^5.10.3",
     "autoprefixer": "^10.0.4",
     "axios": "^0.21.1",
+    "md5": "^2.3.0",
     "mongoose": "^5.11.18",
     "next": "latest",
     "postcss": "^8.1.10",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "tailwindcss": "^2.0.2"
+    "tailwindcss": "^2.0.2",
+    "uuid-base62": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.31",

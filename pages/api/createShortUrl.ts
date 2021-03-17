@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { dbConnect } from "../../controllers/";
+import { dbConnect, generateKey } from "../../controllers/";
 import UrlModel, { IUrl } from "../../models/url";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -25,7 +25,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       } else {
         const newUrlsInDB: IUrl = new UrlModel({
           url: url,
-          shortUrl: url,
+          shortUrl: generateKey(url),
         });
 
         try {

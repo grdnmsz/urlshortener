@@ -1,4 +1,5 @@
 import dbConnect from "./mongodb";
 import urlSendUrl from "./urlSendUrl";
+import generateKey from "./generateKey";
 
-export { dbConnect, urlSendUrl };
+export { dbConnect, urlSendUrl, generateKey };
