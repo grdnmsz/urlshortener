@@ -10,7 +10,7 @@ const LastAddedUrl = ({ shortUrl: key }) => {
       /* 
       https://web.dev/async-clipboard/ 
       */
-      await navigator.clipboard.writeText(toCopy);
+      await navigator.clipboard.writeText("https://" + toCopy);
       setCopyMessage("Copied !");
     } catch (err) {
       console.log(err);

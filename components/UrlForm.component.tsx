@@ -5,7 +5,14 @@ const UrlForm = ({ onSend }) => {
 
   const onSubmit = (event) => {
     event.preventDefault(); // prevent from reload
-    onSend(urlToShort, event);
+
+    if (urlToShort.length < 1) {
+      // err
+    } else if (urlToShort.indexOf("https://") === -1) {
+      // err
+    } else {
+      onSend(urlToShort, event);
+    }
     setUrlToShort("");
   };
 
