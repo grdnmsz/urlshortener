@@ -2,16 +2,22 @@ import { useState } from "react";
 
 const UrlForm = ({ onSend }) => {
   const [urlToShort, setUrlToShort] = useState<string>("");
+  const [errMessage, setErrMessage] = useState<string>("");
+
+  const testHttpPrefix =
+    urlToShort.indexOf("https://") === -1 &&
+    urlToShort.indexOf("http://") === -1;
 
   const onSubmit = (event) => {
     event.preventDefault(); // prevent from reload
 
     if (urlToShort.length < 1) {
-      // err
-    } else if (urlToShort.indexOf("https://") === -1) {
-      // err
+      setErrMessage("(!) Please enter a valid URL");
+    } else if (testHttpPrefix) {
+      setErrMessage("(!) Please prefix your URL with 'http://' or 'https://'");
     } else {
       onSend(urlToShort, event);
+      setErrMessage("");
     }
     setUrlToShort("");
   };
@@ -31,6 +37,14 @@ const UrlForm = ({ onSend }) => {
               onChange={(event) => setUrlToShort(event.target.value)}
             />
           </form>
+          <div
+            className={`${
+              errMessage !== "" ? "block" : "hidden"
+            } text-red-400 pt-2`}
+          >
+            <i className="fas fa-exclamation-circle"></i>
+            {errMessage}
+          </div>
         </div>
       </div>
       <div className="mt-3 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
