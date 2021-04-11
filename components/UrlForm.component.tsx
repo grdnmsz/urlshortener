@@ -36,6 +36,14 @@ const UrlForm = ({ onSend }) => {
               className="mt-3 sm:mt-8 bg-inputColor md:py-4 block w-full pl-7 py-3 pr-7 rounded-md"
               onChange={(event) => setUrlToShort(event.target.value)}
             />
+            <button
+              type="submit"
+              className="mt-3 sm:mt-8 sm:flex sm:justify-center lg:justify-start"
+            >
+              <div className="w-full flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg text-gray-200 bg-headerColor hover:text-gray-800 hover:bg-orange-400 md:py-4 md:text-lg md:px-10">
+                Make short URL
+              </div>
+            </button>
           </form>
           <div
             className={`${
@@ -45,11 +53,6 @@ const UrlForm = ({ onSend }) => {
             <i className="fas fa-exclamation-circle"></i>
             {errMessage}
           </div>
-        </div>
-      </div>
-      <div className="mt-3 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-        <div className="w-full flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg text-gray-200 bg-headerColor hover:text-gray-800 hover:bg-orange-400 md:py-4 md:text-lg md:px-10">
-          Make short URL
         </div>
       </div>
     </>

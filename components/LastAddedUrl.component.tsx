@@ -3,7 +3,7 @@ import { useState } from "react";
 const LastAddedUrl = ({ shortUrl: key }) => {
   // todo : copy button logic
   const completeUrl = `shurl.gordonmes.dev/${key}`;
-  const [copyMessage, setCopyMessage] = useState("");
+  const [isCopied, setIsCopied] = useState(false);
 
   const copyToClipBoard = async (toCopy) => {
     try {
@@ -11,7 +11,6 @@ const LastAddedUrl = ({ shortUrl: key }) => {
       https://web.dev/async-clipboard/ 
       */
       await navigator.clipboard.writeText("https://" + toCopy);
-      setCopyMessage("Copied !");
     } catch (err) {
       console.log(err);
     }
@@ -29,12 +28,15 @@ const LastAddedUrl = ({ shortUrl: key }) => {
         </a>
       </div>
       <button
-        onClick={() => copyToClipBoard(completeUrl)}
-        className="mr-5 font-medium hover:text-orange-200"
+        onClick={() => {
+          setIsCopied(true);
+          copyToClipBoard(completeUrl);
+          setTimeout(() => setIsCopied(false), 3000);
+        }}
+        className="mr-5 font-medium text-sm rounded hover:bg-inputColor px-2 py-1 text-gray-200 hover:text-headerColor bg-headerColor"
       >
-        Copy
+        {isCopied ? "Copied!" : "Copy"}
       </button>
-      {copyMessage}
     </div>
   );
 };
